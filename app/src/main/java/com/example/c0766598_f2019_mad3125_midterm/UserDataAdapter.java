@@ -62,7 +62,9 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
 
         final Customer mydata = myaaraylist.get(position);
 
-        holder.name.setText("Customer Name: "+mydata.getLastName());
+        String fname = mydata.getFirstName() + " " + mydata.getLastName();
+
+        holder.name.setText("Customer Name: "+ fname);
         holder.id.setText("Customer ID: "+mydata.getId().toString());
         holder.age.setText("CUstomer Age: "+mydata.getAge().toString()+" Years");
 

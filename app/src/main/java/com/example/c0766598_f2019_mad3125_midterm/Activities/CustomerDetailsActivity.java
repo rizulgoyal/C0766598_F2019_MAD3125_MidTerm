@@ -17,7 +17,21 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details);
 
+        custid = findViewById(R.id.textEmpID);
+        custname = findViewById(R.id.textEmpName);
+        custage = findViewById(R.id.textEmpAge);
+        custemail = findViewById(R.id.textEmpEmail);
+
         Customer custtemp =getIntent().getParcelableExtra("custobject");
+
+        custid.setText(custtemp.getId());
+
+        String fname = custtemp.getFirstName() + " " + custtemp.getLastName();
+
+        custname.setText(fname);
+
+        custage.setText(custtemp.getAge());
+        custemail.setText(custtemp.getEmail());
 
 
 
