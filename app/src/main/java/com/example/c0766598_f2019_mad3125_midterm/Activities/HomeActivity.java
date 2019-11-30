@@ -85,21 +85,21 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        String info = "";
-        for(Customer mynewcustomer : myarraylist) {
-
-        List<Bill> mybills = mynewcustomer.getBill();
-
-        for(Bill mybill : mybills)
-        {
-            info = info + mybill.getBillType();
-        }
-
-            info = info + mynewcustomer.getFirstName() + " " + mynewcustomer.getLastName();
-
-
-        }
-        mytext.setText(info);
+//        String info = "";
+//        for(Customer mynewcustomer : myarraylist) {
+//
+//        List<Bill> mybills = mynewcustomer.getBill();
+//
+//        for(Bill mybill : mybills)
+//        {
+//            info = info + mybill.getBillType();
+//        }
+//
+//            info = info + mynewcustomer.getFirstName() + " " + mynewcustomer.getLastName();
+//
+//
+//        }
+//        mytext.setText(info);
 
 
 
