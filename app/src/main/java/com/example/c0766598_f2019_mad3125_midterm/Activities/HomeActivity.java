@@ -1,13 +1,18 @@
 package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles.UserDatabase;
+import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
+import com.example.c0766598_f2019_mad3125_midterm.UserDataAdapter;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -24,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     TextView mytext;
     List<Customer> myarraylist = new ArrayList<>();
     String temps;
+    RecyclerView myrecycler;
+    CardView mycardview;
 
 
 
@@ -33,6 +40,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mytext =  findViewById(R.id.hometext);
+        myrecycler = (RecyclerView) findViewById(R.id.recycler_main);
+
 
 
         final UserDatabase uData = UserDatabase.getInstance(this);
@@ -61,11 +70,30 @@ public class HomeActivity extends AppCompatActivity {
             }
             //end of data from json
 
-            myarraylist = uData.daoObjct().getdefaultUserDetails();
         }
+
+        myarraylist = uData.daoObjct().getdefaultUserDetails();
+
+
+
+        final UserDataAdapter myadapter = new UserDataAdapter(this);
+        myadapter.setMyaaraylist(myarraylist);
+
+        LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
+        myrecycler.setLayoutManager(mylinearlayout);
+        myrecycler.setAdapter(myadapter);
+
+
 
         String info = "";
         for(Customer mynewcustomer : myarraylist) {
+
+        List<Bill> mybills = mynewcustomer.getBill();
+
+        for(Bill mybill : mybills)
+        {
+            info = info + mybill.getBillType();
+        }
 
             info = info + mynewcustomer.getFirstName() + " " + mynewcustomer.getLastName();
 

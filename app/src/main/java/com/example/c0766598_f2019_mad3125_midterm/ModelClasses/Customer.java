@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -40,7 +41,6 @@ public class Customer implements Parcelable
 
     public final static Parcelable.Creator<Customer> CREATOR = new Creator<Customer>() {
 
-
         @SuppressWarnings({
                 "unchecked"
         })
@@ -68,8 +68,7 @@ public class Customer implements Parcelable
      * No args constructor for use in serialization
      *
      */
-    public Customer() {
-    }
+
 
     /**
      *

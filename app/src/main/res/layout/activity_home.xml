@@ -6,15 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".Activities.HomeActivity">
 
-    <TextView
-        android:id="@+id/hometext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hometext"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="@color/customLightBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="List of all Active Customers"
+            android:textColor="@color/customBlue"
+            android:textSize="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
