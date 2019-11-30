@@ -18,6 +18,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
     TextView custid, custname, custemail, custage;
     RecyclerView myrecycler;
+    TextView detailtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         custname = findViewById(R.id.textEmpName);
         custage = findViewById(R.id.textEmpAge);
         custemail = findViewById(R.id.textEmpEmail);
+        detailtext = findViewById(R.id.detailtext1);
 
         Customer custtemp =getIntent().getParcelableExtra("custobject");
         String empid = String.valueOf(custtemp.getId());
@@ -42,18 +44,29 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         custage.setText(empage);
         custemail.setText(custtemp.getEmail());
 
+
+
         List<Bill> myBillList = custtemp.getBill();
 
+        if (myBillList == null)
+        {
+            detailtext.setText("Customer has no Bills to pay");
+        }
+        else
+        {
+
+            myrecycler = (RecyclerView) findViewById(R.id.recycler_vehicle);
+
+            final UserVehicleAdapter myadapter = new UserVehicleAdapter(this);
+            myadapter.setMyaaraylist(myBillList);
+
+            LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
+            myrecycler.setLayoutManager(mylinearlayout);
+            myrecycler.setAdapter(myadapter);
+        }
 
 
-        myrecycler = (RecyclerView) findViewById(R.id.recycler_vehicle);
 
-        final UserVehicleAdapter myadapter = new UserVehicleAdapter(this);
-        myadapter.setMyaaraylist(myBillList);
-
-        LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
-        myrecycler.setLayoutManager(mylinearlayout);
-        myrecycler.setAdapter(myadapter);
 
 
 
