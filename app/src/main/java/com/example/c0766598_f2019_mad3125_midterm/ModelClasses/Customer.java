@@ -2,10 +2,12 @@ package com.example.c0766598_f2019_mad3125_midterm.ModelClasses;
 
 
 
-import java.util.List;
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
+import java.util.List;
+
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -14,10 +16,10 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressLint("ParcelCreator")
 @Entity(tableName = "customer")
 
-public class Customer implements Parcelable
-{
+public class Customer implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -39,30 +41,7 @@ public class Customer implements Parcelable
     @Expose
     private List<Bill> bill = null;
 
-    public final static Parcelable.Creator<Customer> CREATOR = new Creator<Customer>() {
 
-        @SuppressWarnings({
-                "unchecked"
-        })
-        public Customer createFromParcel(Parcel in) {
-            return new Customer(in);
-        }
-
-        public Customer[] newArray(int size) {
-            return (new Customer[size]);
-        }
-
-    }
-            ;
-
-    protected Customer(Parcel in) {
-        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.firstName = ((String) in.readValue((String.class.getClassLoader())));
-        this.lastName = ((String) in.readValue((String.class.getClassLoader())));
-        this.age = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.email = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.bill, (com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill.class.getClassLoader()));
-    }
 
     /**
      * No args constructor for use in serialization
@@ -88,6 +67,35 @@ public class Customer implements Parcelable
         this.email = email;
         this.bill = bill;
     }
+
+    protected Customer(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        firstName = in.readString();
+        lastName = in.readString();
+        if (in.readByte() == 0) {
+            age = null;
+        } else {
+            age = in.readInt();
+        }
+        email = in.readString();
+        bill = in.createTypedArrayList(Bill.CREATOR);
+    }
+
+    public static final Creator<Customer> CREATOR = new Creator<Customer>() {
+        @Override
+        public Customer createFromParcel(Parcel in) {
+            return new Customer(in);
+        }
+
+        @Override
+        public Customer[] newArray(int size) {
+            return new Customer[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -137,17 +145,31 @@ public class Customer implements Parcelable
         this.bill = bill;
     }
 
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
-        dest.writeValue(firstName);
-        dest.writeValue(lastName);
-        dest.writeValue(age);
-        dest.writeValue(email);
-        dest.writeList(bill);
-    }
+
 
     public int describeContents() {
         return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        if (age == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(age);
+        }
+        dest.writeString(email);
+        dest.writeTypedList(bill);
     }
 
 }
