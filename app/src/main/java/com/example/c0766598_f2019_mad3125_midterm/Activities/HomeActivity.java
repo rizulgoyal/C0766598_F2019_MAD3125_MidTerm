@@ -74,6 +74,8 @@ public class HomeActivity extends AppCompatActivity {
         mytext.setText(info);
 
 
+
+
     }
 
     public String loadJSONFromAsset() {

@@ -20,7 +20,7 @@ public class Converter
     }
 
     @TypeConverter
-    public static  String fromBill(Bill bill)
+    public static  String fromBill(List<Bill> bill)
     {
         Gson gson = new Gson();
         String json = gson.toJson(bill);
