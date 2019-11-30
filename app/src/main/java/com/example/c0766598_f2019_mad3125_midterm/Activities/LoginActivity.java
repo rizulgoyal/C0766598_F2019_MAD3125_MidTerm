@@ -1,4 +1,4 @@
-package com.example.c0766598_f2019_mad3125_midterm;
+package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.c0766598_f2019_mad3125_midterm.R;
 
 public class LoginActivity extends AppCompatActivity {
 

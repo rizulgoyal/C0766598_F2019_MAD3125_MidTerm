@@ -1,10 +1,12 @@
-package com.example.c0766598_f2019_mad3125_midterm;
+package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.c0766598_f2019_mad3125_midterm.R;
 
 public class MainActivity extends AppCompatActivity {
 
