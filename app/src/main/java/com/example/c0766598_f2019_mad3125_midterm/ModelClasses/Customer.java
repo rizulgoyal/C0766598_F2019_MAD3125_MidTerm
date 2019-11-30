@@ -1,18 +1,26 @@
 package com.example.c0766598_f2019_mad3125_midterm.ModelClasses;
 
+
+
+import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+@Entity(tableName = "customer")
 
 public class Customer implements Parcelable
 {
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     @SerializedName("firstName")
     @Expose
@@ -28,7 +36,8 @@ public class Customer implements Parcelable
     private String email;
     @SerializedName("bill")
     @Expose
-    private ArrayList<Bill> billarray;
+    private List<Bill> bill = null;
+
     public final static Parcelable.Creator<Customer> CREATOR = new Creator<Customer>() {
 
 
@@ -52,7 +61,7 @@ public class Customer implements Parcelable
         this.lastName = ((String) in.readValue((String.class.getClassLoader())));
         this.age = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.email = ((String) in.readValue((String.class.getClassLoader())));
-        this.billarray = ((ArrayList<Bill>) in.readValue((Bill.class.getClassLoader())));
+        in.readList(this.bill, (com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill.class.getClassLoader()));
     }
 
     /**
@@ -66,17 +75,19 @@ public class Customer implements Parcelable
      *
      * @param firstName
      * @param lastName
+     * @param bill
      * @param id
      * @param age
      * @param email
      */
-    public Customer(Integer id, String firstName, String lastName, Integer age, String email) {
+    public Customer(Integer id, String firstName, String lastName, Integer age, String email, List<Bill> bill) {
         super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
+        this.bill = bill;
     }
 
     public Integer getId() {
@@ -119,13 +130,12 @@ public class Customer implements Parcelable
         this.email = email;
     }
 
-    public ArrayList<Bill> getBillarray() {
-        return billarray;
+    public List<Bill> getBill() {
+        return bill;
     }
 
-    public void setBill(Bill bill) {
-        billarray.add(bill);
-
+    public void setBill(List<Bill> bill) {
+        this.bill = bill;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
@@ -134,7 +144,7 @@ public class Customer implements Parcelable
         dest.writeValue(lastName);
         dest.writeValue(age);
         dest.writeValue(email);
-        dest.writeValue(billarray);
+        dest.writeList(bill);
     }
 
     public int describeContents() {

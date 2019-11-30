@@ -3,6 +3,9 @@ package com.example.c0766598_f2019_mad3125_midterm.ModelClasses;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,6 +14,8 @@ public class Bill implements Parcelable
 
     @SerializedName("billId")
     @Expose
+    @PrimaryKey(autoGenerate = true)
+
     private Integer billId;
     @SerializedName("billDate")
     @Expose
