@@ -1,18 +1,21 @@
 package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles.UserDatabase;
-import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
-import com.example.c0766598_f2019_mad3125_midterm.UserDataAdapter;
+import com.example.c0766598_f2019_mad3125_midterm.Adapters.UserDataAdapter;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -23,6 +26,10 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -84,6 +91,14 @@ public class HomeActivity extends AppCompatActivity {
         myrecycler.setLayoutManager(mylinearlayout);
         myrecycler.setAdapter(myadapter);
 
+        uData.daoObjct().getUserDetails().observe(this, new Observer<List<Customer>>() {
+            @Override
+            public void onChanged(@Nullable List<Customer> customers) {
+                myadapter.setMyaaraylist(customers);
+                myadapter.notifyDataSetChanged();
+            }
+        });
+
 
 
 //        String info = "";
@@ -105,7 +120,36 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_addcustomer,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.add_customer:
+                Intent myintent = new Intent(this,AddCustomerActivity.class);
+                startActivity(myintent);
+                Toast.makeText(HomeActivity.this,"Select Values",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.delete_customer:
+                Toast.makeText(HomeActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
     public String loadJSONFromAsset() {
         String json = null;

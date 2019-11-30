@@ -1,4 +1,4 @@
-package com.example.c0766598_f2019_mad3125_midterm;
+package com.example.c0766598_f2019_mad3125_midterm.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.c0766598_f2019_mad3125_midterm.Activities.CustomerDetailsActivity;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
+import com.example.c0766598_f2019_mad3125_midterm.R;
 
 import java.util.List;
 

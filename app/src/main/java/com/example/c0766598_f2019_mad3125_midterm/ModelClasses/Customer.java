@@ -53,19 +53,18 @@ public class Customer implements Parcelable {
      *
      * @param firstName
      * @param lastName
-     * @param bill
      * @param id
      * @param age
      * @param email
      */
-    public Customer(Integer id, String firstName, String lastName, Integer age, String email, List<Bill> bill) {
+    public Customer(Integer id, String firstName, String lastName, Integer age, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
-        this.bill = bill;
+        this.bill = null;
     }
 
     protected Customer(Parcel in) {

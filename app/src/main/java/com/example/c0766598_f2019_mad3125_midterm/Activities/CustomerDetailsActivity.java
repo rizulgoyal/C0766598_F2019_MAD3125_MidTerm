@@ -10,8 +10,7 @@ import android.widget.TextView;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
-import com.example.c0766598_f2019_mad3125_midterm.UserDataAdapter;
-import com.example.c0766598_f2019_mad3125_midterm.UserVehicleAdapter;
+import com.example.c0766598_f2019_mad3125_midterm.Adapters.UserVehicleAdapter;
 
 import java.util.List;
 
