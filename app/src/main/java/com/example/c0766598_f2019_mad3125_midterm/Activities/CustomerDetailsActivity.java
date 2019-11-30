@@ -1,6 +1,8 @@
 package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -8,12 +10,15 @@ import android.widget.TextView;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
+import com.example.c0766598_f2019_mad3125_midterm.UserDataAdapter;
+import com.example.c0766598_f2019_mad3125_midterm.UserVehicleAdapter;
 
 import java.util.List;
 
 public class CustomerDetailsActivity extends AppCompatActivity {
 
     TextView custid, custname, custemail, custage;
+    RecyclerView myrecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,17 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         custemail.setText(custtemp.getEmail());
 
         List<Bill> myBillList = custtemp.getBill();
+
+
+
+        myrecycler = (RecyclerView) findViewById(R.id.recycler_vehicle);
+
+        final UserVehicleAdapter myadapter = new UserVehicleAdapter(this);
+        myadapter.setMyaaraylist(myBillList);
+
+        LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
+        myrecycler.setLayoutManager(mylinearlayout);
+        myrecycler.setAdapter(myadapter);
 
 
 

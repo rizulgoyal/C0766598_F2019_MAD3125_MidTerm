@@ -76,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
         final UserDataAdapter myadapter = new UserDataAdapter(this);
         myadapter.setMyaaraylist(myarraylist);
 
