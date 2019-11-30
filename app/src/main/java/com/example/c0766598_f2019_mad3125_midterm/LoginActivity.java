@@ -39,7 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 //        if (view.getId() == R.id.buttonlogin)
 
-
+                usernamestore = username.getText().toString();
+                passwordstore = password.getText().toString();
 
                 if (usernamestore.isEmpty() || passwordstore.isEmpty())
                 {
@@ -48,22 +49,18 @@ showtextDialog(LoginActivity.this,"Please Enter Username and Password");
 
                 else if(username.getText().toString().equals("Rizul") && password.getText().toString().equals("8029"))
                 {
-                    usernamestore = username.getText().toString();
-                    passwordstore = password.getText().toString();
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.putExtra("username",usernamestore);
-                    intent.putExtra("password",passwordstore);
+
+                    showFinalDialog(LoginActivity.this,"Are You sure you want to login into Billing System");
 
 
-                    startActivity(intent);
                 }
                 else
                 {
-                    showtextDialog(LoginActivity.this,"Are You sure you want to login into Billing System");
 
+                    showtextDialog(LoginActivity.this,"Please Enter Correct Username and Password");
 
                     //username.setError("Please add name");
-                    Toast.makeText(LoginActivity.this,"Not correct",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this,"Not correct",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -93,14 +90,58 @@ showtextDialog(LoginActivity.this,"Please Enter Username and Password");
             public void onClick(View v) {
 
 
+
                 dialog.dismiss();
+
+
+
+
 
             }
         });
 
+
+
         dialog.show();
 
     }
+
+
+
+    public void showFinalDialog(final Activity activity, String msg){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.dialogtext);
+        text.setText(msg);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.customButton);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("username",usernamestore);
+                intent.putExtra("password",passwordstore);
+                dialog.dismiss();
+
+
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+        dialog.show();
+
+    }
+
 
 
 
