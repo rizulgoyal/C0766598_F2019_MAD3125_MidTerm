@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public interface DataAccessObjectInterface
 
     @Query("Select * from customer")
     LiveData<List<Customer>> getUserDetails();
+
+//    @Query("Select bill from customer")
+//    LiveData<List<Bill>> getbillDetails();
+
     @Query("Select count(id) from customer")
     Integer count();
 

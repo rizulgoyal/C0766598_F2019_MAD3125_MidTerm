@@ -1,6 +1,8 @@
 package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 
+
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -13,29 +15,32 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles.UserDatabase;
+import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
 
-public class AddVehicleActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddBillActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText id,fname,lname,age,email;
+    EditText id,date,amount,type;
     Button mybutton;
-    String custid ;
-    String custage ;
-    String custfname ;
-    String custlname ;
-    String custemail;
+    String bid ;
+    String bdate ;
+    String bamount ;
+    String btype ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_customer);
-        id = findViewById(R.id.editTextCustID);
-        fname = findViewById(R.id.editTextCustfname);
-        lname = findViewById(R.id.editTextCustlname);
-        age = findViewById(R.id.editTextCustage);
-        email = findViewById(R.id.editTextCustemail);
+        setContentView(R.layout.activity_add_bill);
+        id = findViewById(R.id.editTextbillID);
+        date = findViewById(R.id.editTextbilldate);
+        amount = findViewById(R.id.editTextbillamount);
+        type = findViewById(R.id.editTextBillType);
 
-mybutton = findViewById(R.id.buttoncustomer);
+
+
+        mybutton = findViewById(R.id.buttonbill);
         mybutton.setOnClickListener(this);
 
 
@@ -44,7 +49,7 @@ mybutton = findViewById(R.id.buttoncustomer);
     @Override
     public void onClick(View v) {
 
-        createCust();
+        createBill();
 
         //Intent myintent = new Intent(this,MainActivity.class);
         //startActivity(myintent);
@@ -56,28 +61,23 @@ mybutton = findViewById(R.id.buttoncustomer);
 
     }
 
-    public void createCust()
+    public void createBill()
     {
-        custid = id.getText().toString();
-         custage = age.getText().toString();
-         custfname = fname.getText().toString();
-         custlname = lname.getText().toString();
-         custemail = email.getText().toString();
+        bid = id.getText().toString();
+         btype = type.getText().toString();
+         bdate = date.getText().toString();
+         bamount = amount.getText().toString();
 
 
 
-        if (custid.equals(""))
+        if(bid.equals("") || btype.equals("") || bdate.equals("") || bamount.equals(""))
         {
-            showtextDialog(AddVehicleActivity.this,"Please add Customer ID to complete the Customer Form");
-        }
-        else if(custfname.equals("") || custlname.equals("") || custage.equals("") || custemail.equals(""))
-        {
-            showtextDialog(AddVehicleActivity.this,"Please add Customer values to complete the Customer Form");
+            showtextDialog(AddBillActivity.this,"Please add All Bill values to complete the Customer Form");
 
         }
         else {
 
-            showDialog(AddVehicleActivity.this,"Are you sure you want to submit?");
+            showDialog(AddBillActivity.this,"Are you sure you want to submit?");
 
 
 
@@ -100,13 +100,18 @@ mybutton = findViewById(R.id.buttoncustomer);
             @Override
             public void onClick(View v) {
 
-                Customer tempobject = new Customer(Integer.parseInt(custid),custfname,custlname,Integer.parseInt(custage),custemail);
+                Customer custtemp =getIntent().getParcelableExtra("custobjectvehicle");
 
-                final UserDatabase uData = UserDatabase.getInstance(AddVehicleActivity.this);
+
+                Bill tempobject = new Bill(Integer.parseInt(bid),bdate,btype,Double.parseDouble(bamount));
+
+                final UserDatabase uData = UserDatabase.getInstance(AddBillActivity.this);
+
+                custtemp.setmyBill(tempobject);
                 //Gson gson = new Gson();
 
 
-                uData.daoObjct().insert(tempobject);
+                uData.daoObjct().update(custtemp);
 
 
                 dialog.dismiss();

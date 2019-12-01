@@ -69,13 +69,9 @@ mybutton = findViewById(R.id.buttoncustomer);
 
 
 
-        if (custid.equals(""))
+         if(custid.equals("") || custfname.equals("") || custlname.equals("") || custage.equals("") || custemail.equals(""))
         {
-            showtextDialog(AddCustomerActivity.this,"Please add Customer ID to complete the Customer Form");
-        }
-        else if(custfname.equals("") || custlname.equals("") || custage.equals("") || custemail.equals(""))
-        {
-            showtextDialog(AddCustomerActivity.this,"Please add Customer values to complete the Customer Form");
+            showtextDialog(AddCustomerActivity.this,"Please add All Customer values to complete the Customer Form");
 
         }
         else {

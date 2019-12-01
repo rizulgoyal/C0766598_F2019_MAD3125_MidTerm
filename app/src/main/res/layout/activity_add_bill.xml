@@ -25,7 +25,7 @@
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Please Enter Values to Add Employee"
+            android:text="Please Enter Values to Add Bill"
             android:textColor="@android:color/background_light"
             android:textSize="20dp">
 
@@ -47,7 +47,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:padding="5dp"
                 android:textSize="15dp"
-                android:text="Enter Customer ID" />
+                android:text="Enter Bill ID" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
 
 
             <EditText
-                android:id="@+id/editTextCustID"
+                android:id="@+id/editTextbillID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:singleLine="true"
@@ -90,7 +90,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:padding="5dp"
                 android:textSize="15dp"
-                android:text="Enter Customer First Name" />
+                android:text="Enter Bill Date" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -104,7 +104,7 @@
 
 
                 <EditText
-                    android:id="@+id/editTextCustfname"
+                    android:id="@+id/editTextbilldate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
@@ -133,7 +133,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:padding="5dp"
                 android:textSize="15dp"
-                android:text="Enter Customer Last Name" />
+                android:text="Enter Bill Type" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -147,7 +147,7 @@
 
 
                 <EditText
-                    android:id="@+id/editTextCustlname"
+                    android:id="@+id/editTextBillType"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
@@ -175,7 +175,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:padding="5dp"
                 android:textSize="15dp"
-                android:text="Enter Customer Age" />
+                android:text="Enter Bill Amount" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -189,8 +189,8 @@
 
 
                 <EditText
-                    android:inputType="number"
-                    android:id="@+id/editTextCustage"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/editTextbillamount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
@@ -203,56 +203,16 @@
 
         // first text box ends here
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/text5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:padding="5dp"
-                android:textSize="15dp"
-                android:text="Enter Customer Email" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="5dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp"
-                android:background="@color/customLightBlue"
-
-                android:layout_marginRight="10dp">
-
-
-                <EditText
-                    android:id="@+id/editTextCustemail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:singleLine="true"
-                    android:backgroundTint="@color/customBlue"/>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </LinearLayout>
-
 
 
 
         <Button
-            android:id="@+id/buttoncustomer"
+            android:id="@+id/buttonbill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/customBlue"
-            android:text="Click to Add Customer"
+            android:text="Click to Add Bill"
             android:textColor="@android:color/background_light"
             android:textSize="20dp"></Button>
 

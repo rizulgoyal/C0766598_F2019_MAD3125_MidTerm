@@ -53,6 +53,7 @@ public class Customer implements Parcelable {
      *
      * @param firstName
      * @param lastName
+     * @param bill
      * @param id
      * @param age
      * @param email
@@ -142,6 +143,10 @@ public class Customer implements Parcelable {
 
     public void setBill(List<Bill> bill) {
         this.bill = bill;
+    }
+
+    public void setmyBill(Bill bill) {
+        this.bill.add(bill);
     }
 
 

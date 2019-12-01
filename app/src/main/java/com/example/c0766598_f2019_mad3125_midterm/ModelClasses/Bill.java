@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 
+import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
+import androidx.room.RoomWarnings;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -29,9 +31,9 @@ public class Bill implements Parcelable
     public final static Parcelable.Creator<Bill> CREATOR = new Creator<Bill>() {
 
 
-        @SuppressWarnings({
-                "unchecked"
-        })
+        @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+
+
         public Bill createFromParcel(Parcel in) {
             return new Bill(in);
         }
@@ -54,8 +56,7 @@ public class Bill implements Parcelable
      * No args constructor for use in serialization
      *
      */
-    public Bill() {
-    }
+
 
     /**
      *

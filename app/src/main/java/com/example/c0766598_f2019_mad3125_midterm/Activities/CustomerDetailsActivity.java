@@ -1,7 +1,9 @@
 package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles.UserDatabase;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
@@ -32,10 +33,14 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     RecyclerView myrecycler;
     TextView detailtext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details);
+
+        Customer custtemp =getIntent().getParcelableExtra("custobject");
+
 
         custid = findViewById(R.id.textEmpID);
         custname = findViewById(R.id.textEmpName);
@@ -43,7 +48,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         custemail = findViewById(R.id.textEmpEmail);
         detailtext = findViewById(R.id.detailtext1);
 
-        Customer custtemp =getIntent().getParcelableExtra("custobject");
         String empid = String.valueOf(custtemp.getId());
         custid.setText(empid);
 
@@ -64,8 +68,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         {
             detailtext.setText("Customer has no Bills to pay");
         }
-        else
-        {
+        else {
 
             myrecycler = (RecyclerView) findViewById(R.id.recycler_vehicle);
 
@@ -75,7 +78,22 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
             myrecycler.setLayoutManager(mylinearlayout);
             myrecycler.setAdapter(myadapter);
+
+
+
+//            final UserDatabase uData = UserDatabase.getInstance(this);
+//
+//            uData.daoObjct().getbillDetails().observe(this, new Observer<List<Bill>>() {
+//                @Override
+//                public void onChanged(@Nullable List<Bill> bills) {
+//                    myadapter.setMyaaraylist(bills);
+//                    myadapter.notifyDataSetChanged();
+//                }
+//            });
         }
+
+
+
 
 
 
@@ -89,7 +107,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_vehicle,menu);
+        menuInflater.inflate(R.menu.menu_bill,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -97,10 +115,12 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.add_vehicle:
+            case R.id.add_bill:
+                Customer custtemp =getIntent().getParcelableExtra("custobject");
 
-                Intent myintent = new Intent(this,AddCustomerActivity.class);
+                Intent myintent = new Intent(this,AddBillActivity.class);
                 startActivity(myintent);
+                myintent.putExtra("custobjectvehicle",custtemp);
              //   Toast.makeText(HomeActivity.this,"Select Values",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.delete_customer:
@@ -132,11 +152,11 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Customer custtemp =getIntent().getParcelableExtra("custobject");
 
 
                 final UserDatabase uData = UserDatabase.getInstance(CustomerDetailsActivity.this);
                 //Gson gson = new Gson();
+                Customer custtemp =getIntent().getParcelableExtra("custobject");
 
 
                 uData.daoObjct().delete(custtemp);
