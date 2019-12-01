@@ -81,15 +81,16 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
 
 
-//            final UserDatabase uData = UserDatabase.getInstance(this);
-//
-//            uData.daoObjct().getbillDetails().observe(this, new Observer<List<Bill>>() {
-//                @Override
-//                public void onChanged(@Nullable List<Bill> bills) {
-//                    myadapter.setMyaaraylist(bills);
-//                    myadapter.notifyDataSetChanged();
-//                }
-//            });
+            final UserDatabase uData = UserDatabase.getInstance(this);
+
+
+            uData.daoObjct().getbillDetails(custtemp.getId()).observe(this, new Observer<List<Bill>>() {
+                @Override
+                public void onChanged(@Nullable List<Bill> bills) {
+                    myadapter.setMyaaraylist(bills);
+                    myadapter.notifyDataSetChanged();
+                }
+            });
         }
 
 

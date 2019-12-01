@@ -27,8 +27,8 @@ public interface DataAccessObjectInterface
     @Query("Select * from customer")
     LiveData<List<Customer>> getUserDetails();
 
-//    @Query("Select bill from customer")
-//    LiveData<List<Bill>> getbillDetails();
+    @Query("Select bill from customer where id = :id LIMIT 1")
+    LiveData<List<Bill>> getbillDetails(Integer id);
 
     @Query("Select count(id) from customer")
     Integer count();
