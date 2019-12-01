@@ -141,6 +141,7 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this,"Select Values",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.delete_customer:
+
                 Toast.makeText(HomeActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
                 break;
         }
