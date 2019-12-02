@@ -107,11 +107,13 @@ public class AddBillActivity extends AppCompatActivity implements View.OnClickLi
 
                 final UserDatabase uData = UserDatabase.getInstance(AddBillActivity.this);
 
+
                 custtemp.setmyBill(tempobject);
                 //Gson gson = new Gson();
 
 
                 uData.daoObjct().update(custtemp);
+
 
 
                 dialog.dismiss();

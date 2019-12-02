@@ -78,15 +78,17 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
             myrecycler.setLayoutManager(mylinearlayout);
             myrecycler.setAdapter(myadapter);
+            myadapter.notifyDataSetChanged();
 
 
 
             final UserDatabase uData = UserDatabase.getInstance(this);
 
 
-            uData.daoObjct().getbillDetails(custtemp.getId()).observe(this, new Observer<List<Bill>>() {
+            uData.daoObjct().getbillDetails(custtemp.getId()).observe(this, new Observer<Customer>() {
                 @Override
-                public void onChanged(@Nullable List<Bill> bills) {
+                public void onChanged(@Nullable Customer customer) {
+                    List<Bill> bills = customer.getBill();
                     myadapter.setMyaaraylist(bills);
                     myadapter.notifyDataSetChanged();
                 }
@@ -120,8 +122,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 Customer custtemp =getIntent().getParcelableExtra("custobject");
 
                 Intent myintent = new Intent(this,AddBillActivity.class);
-                startActivity(myintent);
                 myintent.putExtra("custobjectvehicle",custtemp);
+                startActivity(myintent);
              //   Toast.makeText(HomeActivity.this,"Select Values",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.delete_customer:

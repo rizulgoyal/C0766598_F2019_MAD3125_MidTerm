@@ -1,6 +1,9 @@
 package com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles;
 
+import android.database.Cursor;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,8 +30,9 @@ public interface DataAccessObjectInterface
     @Query("Select * from customer")
     LiveData<List<Customer>> getUserDetails();
 
-    @Query("Select bill from customer where id = :id LIMIT 1")
-    LiveData<List<Bill>> getbillDetails(Integer id);
+    @Query("Select * from customer where id = :id LIMIT 1")
+    LiveData<Customer> getbillDetails(Integer id);
+
 
     @Query("Select count(id) from customer")
     Integer count();
