@@ -73,7 +73,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             myrecycler = (RecyclerView) findViewById(R.id.recycler_vehicle);
 
             final UserVehicleAdapter myadapter = new UserVehicleAdapter(this);
-            myadapter.setMyaaraylist(myBillList);
+         myadapter.setMyaaraylist(myBillList);
+            myadapter.setMycustomer(custtemp);
 
             LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
             myrecycler.setLayoutManager(mylinearlayout);

@@ -8,8 +8,13 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.c0766598_f2019_mad3125_midterm.DatabaseFiles.UserDatabase;
@@ -140,8 +145,9 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(myintent);
                 Toast.makeText(HomeActivity.this,"Select Values",Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.delete_customer:
-                Toast.makeText(HomeActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
+            case R.id.logout:
+                showDialog(HomeActivity.this,"Are you sure you want to Log Out");
+             //   Toast.makeText(HomeActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -166,5 +172,36 @@ public class HomeActivity extends AppCompatActivity {
             return null;
         }
         return json;
+    }
+
+    public void showDialog(final Activity activity, String msg){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog_twobutton);
+
+        TextView text = (TextView) dialog.findViewById(R.id.dialogtext);
+        text.setText(msg);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.customButton);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+                finish();
+            }
+        });
+        Button dialogNoButton = (Button) dialog.findViewById(R.id.customButtonNo);
+        dialogNoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
     }
 }
