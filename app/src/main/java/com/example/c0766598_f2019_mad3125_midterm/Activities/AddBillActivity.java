@@ -4,11 +4,13 @@ package com.example.c0766598_f2019_mad3125_midterm.Activities;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,9 +21,15 @@ import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Bill;
 import com.example.c0766598_f2019_mad3125_midterm.ModelClasses.Customer;
 import com.example.c0766598_f2019_mad3125_midterm.R;
 
-public class AddBillActivity extends AppCompatActivity implements View.OnClickListener {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class AddBillActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText id,date,amount,type;
+    final Calendar myCalendar = Calendar.getInstance();
+
     Button mybutton;
     String bid ;
     String bdate ;
@@ -43,13 +51,53 @@ public class AddBillActivity extends AppCompatActivity implements View.OnClickLi
         mybutton = findViewById(R.id.buttonbill);
         mybutton.setOnClickListener(this);
 
+        date.setOnClickListener(this);
+
+
+
+
+
 
     }
+
+    DatePickerDialog.OnDateSetListener mydate = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+
+    };
+
+    private void updateLabel() {
+        String myFormat = "MMM-dd-yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        date.setText(sdf.format(myCalendar.getTime()));
+    }
+
+
 
     @Override
     public void onClick(View v) {
 
-        createBill();
+        switch (v.getId())
+        {
+            case  R.id.buttonbill:
+                createBill();
+        break;
+            case  R.id.editTextbilldate:
+                new DatePickerDialog(v.getContext(), mydate, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+        }
+
 
         //Intent myintent = new Intent(this,MainActivity.class);
         //startActivity(myintent);
